@@ -22,7 +22,7 @@ public class Financas implements Serializable{
 	private String tipo; //Tipo Financa
 	
 	@OneToMany
-	private List<Conta> contas = new ArrayList<>(); //Tipo Contas
+	private List<Conta> contas = new ArrayList<>();
 	private Date data;
 	
 	public Financas() {
@@ -59,6 +59,14 @@ public class Financas implements Serializable{
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
 	}
 
 	public Date getData() {
