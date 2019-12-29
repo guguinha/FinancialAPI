@@ -1,40 +1,36 @@
 package br.com.guimaraes.augusto.financial.api.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+/**
+ * Entidade representa a fonte da finança, se foi da carteira ou banco
+ * 
+ * @author Augusto
+ *
+ */
 
 @Entity
-public class Financas implements Serializable{
+public class Conta implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String descricao;
-	private String tipo; //Tipo Financa
+	private String banco_carteira; //contas ou carteira 
 	
-	@OneToMany
-	private List<Conta> contas = new ArrayList<>(); //Tipo Contas
-	private Date data;
-	
-	public Financas() {
+	public Conta() {
 		
 	}
-
-	public Financas(Integer id, String descricao, String tipo, Conta conta, Date data) {
+	
+	public Conta(Integer id, String banco_carteira) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
-		this.tipo = tipo;
-		this.data = data;
+		this.banco_carteira = banco_carteira;
 	}
 
 	public Integer getId() {
@@ -45,28 +41,12 @@ public class Financas implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getBanco_carteira() {
+		return banco_carteira;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
+	public void setBanco_carteira(String banco_carteira) {
+		this.banco_carteira = banco_carteira;
 	}
 
 	@Override
@@ -85,7 +65,7 @@ public class Financas implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Financas other = (Financas) obj;
+		Conta other = (Conta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -93,7 +73,6 @@ public class Financas implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 	
 }
