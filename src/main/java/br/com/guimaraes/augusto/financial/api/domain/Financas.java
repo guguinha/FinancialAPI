@@ -3,12 +3,20 @@ package br.com.guimaraes.augusto.financial.api.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Financas implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-	private TipoFinanca tipo;
+	private String tipo; //Tipo Financa
 	private String fonte; //saiu da carteira ou de algum banco
 	private Date data;
 	
@@ -16,7 +24,7 @@ public class Financas implements Serializable{
 		
 	}
 
-	public Financas(Integer id, String descricao, TipoFinanca tipo, String fonte, Date data) {
+	public Financas(Integer id, String descricao, String tipo, String fonte, Date data) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -41,11 +49,11 @@ public class Financas implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public TipoFinanca getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoFinanca tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
