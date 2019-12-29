@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/Financa")
+@RequestMapping(value="/financa")
 public class FinancaResource {
 	
 	@GetMapping(value="/{id}")
