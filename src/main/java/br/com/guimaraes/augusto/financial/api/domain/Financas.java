@@ -2,14 +2,12 @@ package br.com.guimaraes.augusto.financial.api.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Financas implements Serializable{
@@ -21,19 +19,21 @@ public class Financas implements Serializable{
 	private String descricao;
 	private String tipo; //Tipo Financa
 	
-	@OneToMany
-	private List<Conta> contas = new ArrayList<>();
+	@OneToOne
+	private Conta conta;
 	private Date data;
+
 	
 	public Financas() {
 		
 	}
-
+	
 	public Financas(Integer id, String descricao, String tipo, Conta conta, Date data) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.tipo = tipo;
+		this.conta = conta;
 		this.data = data;
 	}
 
@@ -61,12 +61,12 @@ public class Financas implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public List<Conta> getContas() {
-		return contas;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setContas(List<Conta> contas) {
-		this.contas = contas;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 
 	public Date getData() {
