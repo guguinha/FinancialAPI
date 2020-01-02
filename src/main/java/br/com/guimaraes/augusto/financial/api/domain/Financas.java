@@ -1,8 +1,9 @@
 package br.com.guimaraes.augusto.financial.api.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,24 +18,28 @@ public class Financas implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-	private String tipo; //Tipo Financa
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "financa")
+	private TipoFinanca tipo;
 	
 	@OneToOne
 	private Conta conta;
-	private Date data;
+	private Date dataFinanca; // Data da finança
+	private Date dataSave; 	// Data que os dados foram salvos/atualizados
+	
 
 	
 	public Financas() {
 		
 	}
 	
-	public Financas(Integer id, String descricao, String tipo, Conta conta, Date data) {
+	public Financas(Integer id, String descricao, Conta conta, Date dataFinanca, Date dataSave) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
-		this.tipo = tipo;
 		this.conta = conta;
-		this.data = data;
+		this.dataFinanca = dataFinanca;
+		this.dataSave = dataSave;
 	}
 
 	public Integer getId() {
@@ -53,11 +58,11 @@ public class Financas implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public String getTipo() {
+	public TipoFinanca getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoFinanca tipo) {
 		this.tipo = tipo;
 	}
 
@@ -69,12 +74,20 @@ public class Financas implements Serializable{
 		this.conta = conta;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDataFinanca() {
+		return dataFinanca;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataFinanca(Date dataFinanca) {
+		this.dataFinanca = dataFinanca;
+	}
+
+	public Date getDataSave() {
+		return dataSave;
+	}
+
+	public void setDataSave(Date dataSave) {
+		this.dataSave = dataSave;
 	}
 
 	@Override

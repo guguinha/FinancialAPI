@@ -1,14 +1,18 @@
 package br.com.guimaraes.augusto.financial.api.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class TipoReceita extends TipoFinanca{
-	
+	private static final long serialVersionUID = 1L;
+
 	public TipoReceita() {
-		super("Receita");
-	}
-
-	public TipoReceita(String tipo) {
-		super(tipo);
-
+		
 	}
 	
+	public TipoReceita(Integer id, Financas financa) {
+		super(id, "Receita", financa);
+		
+	}
+			
 }

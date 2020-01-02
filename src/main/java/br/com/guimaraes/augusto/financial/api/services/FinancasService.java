@@ -17,7 +17,7 @@ public class FinancasService {
 	
 	public Financas find(Integer id) {
 		Optional<Financas> obj = repository.findById(id);
-		
+		// Criar msg de erro própia
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + 
 		Financas.class.getName()));
