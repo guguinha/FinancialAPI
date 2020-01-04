@@ -27,12 +27,13 @@ public class DBService {
 	private ContaRepository contaRepository;
 	@Autowired
 	private TipoFinancaRepository tipoFinancaRepository;
+	private final Double ZERO = 0.0;
 	
 	public void instantiateTestDatabase() throws ParseException{
 		
-		Conta c1 = new Conta(null, "BB");
-		Conta c2 = new Conta(null, "NuBank");
-		Conta c3 = new Conta(null, "Carteira");
+		Conta c1 = new Conta(null, ZERO, "BB");
+		Conta c2 = new Conta(null, 2000.00, "NuBank");
+		Conta c3 = new Conta(null, ZERO, "Carteira");
 		
 		
 		

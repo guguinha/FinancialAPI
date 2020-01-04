@@ -21,15 +21,17 @@ public class Conta implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Double saldo;
 	private String banco_carteira; //contas ou carteira 
 	
 	public Conta() {
 		
 	}
 	
-	public Conta(Integer id, String banco_carteira) {
+	public Conta(Integer id, Double saldo, String banco_carteira) {
 		super();
 		this.id = id;
+		this.saldo = saldo;
 		this.banco_carteira = banco_carteira;
 	}
 
@@ -39,6 +41,14 @@ public class Conta implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+	
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 	public String getBanco_carteira() {
