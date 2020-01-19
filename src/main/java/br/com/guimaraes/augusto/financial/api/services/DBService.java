@@ -4,16 +4,16 @@ package br.com.guimaraes.augusto.financial.api.services;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.guimaraes.augusto.financial.api.domain.Conta;
 import br.com.guimaraes.augusto.financial.api.domain.Financas;
-import br.com.guimaraes.augusto.financial.api.domain.TipoDespesa;
 import br.com.guimaraes.augusto.financial.api.domain.TipoFinanca;
-import br.com.guimaraes.augusto.financial.api.domain.TipoReceita;
 import br.com.guimaraes.augusto.financial.api.domain.enums.TiposDespesa;
+import br.com.guimaraes.augusto.financial.api.domain.enums.TiposFinanca;
 import br.com.guimaraes.augusto.financial.api.repositories.ContaRepository;
 import br.com.guimaraes.augusto.financial.api.repositories.FinancasRepository;
 import br.com.guimaraes.augusto.financial.api.repositories.TipoFinancaRepository;
@@ -39,13 +39,13 @@ public class DBService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Financas f1 = new Financas(null, "lanche", c1, sdf.parse("29/12/2019 21:39"), sdf.parse("29/12/2019 21:39"));
-		Financas f2 = new Financas(null, "Venda",  c2, sdf.parse("29/12/2019 21:39"), sdf.parse("29/12/2019 21:39"));
+		Financas f1 = new Financas(null, "lanche", c1, new Date());
+		Financas f2 = new Financas(null, "Venda",  c2, sdf.parse("29/12/2019 21:39"));
 		
-		TipoFinanca despesa = new TipoDespesa(null, TiposDespesa.DEBITO ,f1);
+		TipoFinanca despesa = new TipoFinanca(null, TiposFinanca.DESPESA, TiposDespesa.DEBITO ,f1);
 		f1.setTipo(despesa);
 		
-		TipoFinanca receita = new TipoReceita(null,f2);
+		TipoFinanca receita = new TipoFinanca(null, TiposFinanca.RECEITA,f2);
 		f2.setTipo(receita);
 		
 		contaRepository.saveAll(Arrays.asList(c1,c2,c3));

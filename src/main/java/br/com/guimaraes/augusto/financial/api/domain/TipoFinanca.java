@@ -12,6 +12,9 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.guimaraes.augusto.financial.api.domain.enums.TiposDespesa;
+import br.com.guimaraes.augusto.financial.api.domain.enums.TiposFinanca;
+
 /**
  * Define o tipo da finança, entre Receitas e Despesas
  * @author Augusto.
@@ -20,12 +23,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE )
-public abstract class TipoFinanca implements Serializable{
+public class TipoFinanca implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private Integer id;
-	private String tipo; //Receita ou Despesa
+	//private String tipo; //Receita ou Despesa
+	private Integer tipo;
+	private Integer tipoDespesa;
 	
 	@JsonIgnore
 	@OneToOne
@@ -37,9 +42,17 @@ public abstract class TipoFinanca implements Serializable{
 		
 	}
 
-	public TipoFinanca(Integer id,String tipo, Financas financa) {
+	public TipoFinanca(Integer id,TiposFinanca tipo, Financas financa) {
 		this.id = id;
-		this.tipo = tipo;
+		this.tipo = tipo.getCod();
+		this.tipoDespesa = 0; // not despesa
+		this.financa = financa;
+	}
+	
+	public TipoFinanca(Integer id,TiposFinanca tipo, TiposDespesa tipoDespesa, Financas financa) {
+		this.id = id;
+		this.tipo = tipo.getCod();
+		this.tipoDespesa = tipoDespesa.getCod();
 		this.financa = financa;
 	}
 
@@ -51,12 +64,20 @@ public abstract class TipoFinanca implements Serializable{
 		this.id = id;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public TiposFinanca getTipo() {
+		return TiposFinanca.toEnum(tipo);
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipo(TiposFinanca tipo) {
+		this.tipo = tipo.getCod();
+	}
+	
+	public TiposDespesa getTipoDespesa() {
+		return TiposDespesa.toEnum(tipoDespesa);
+	}
+
+	public void setTipoDespesa(TiposDespesa tipoDespesa) {
+		this.tipoDespesa = tipoDespesa.getCod();
 	}
 
 	public Financas getFinanca() {

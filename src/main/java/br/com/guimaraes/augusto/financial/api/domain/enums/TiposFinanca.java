@@ -1,17 +1,14 @@
 package br.com.guimaraes.augusto.financial.api.domain.enums;
 
-public enum TiposDespesa {
+public enum TiposFinanca {
 	
-	NOTDESPESA(0,"Não é uma despesa"),
-	DINHEIRO(1, "Dinheiro"),
-	DEBITO(2, "Débito"),
-	CREDITO(3, "Crédito");
-	//VOUCHER
+	RECEITA(1, "Receita"),
+	DESPESA(2, "Despesa");
 	
 	private int cod;
 	private String descricao;
 	
-	private TiposDespesa(int cod, String descricao) {
+	private TiposFinanca(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -23,13 +20,13 @@ public enum TiposDespesa {
 		return descricao;
 	}
 
-	public static TiposDespesa toEnum(Integer cod) {
+	public static TiposFinanca toEnum(Integer cod) {
 		
 		if(cod == null) {
 			return null;
 		}
 		
-		for (TiposDespesa x : TiposDespesa.values()) {
+		for (TiposFinanca x : TiposFinanca.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}

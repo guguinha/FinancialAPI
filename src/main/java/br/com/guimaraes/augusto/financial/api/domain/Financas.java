@@ -24,6 +24,7 @@ public class Financas implements Serializable{
 	
 	@OneToOne
 	private Conta conta;
+	
 	private Date dataFinanca; // Data da finança
 	private Date dataSave; 	// Data que os dados foram salvos/atualizados
 	
@@ -33,13 +34,12 @@ public class Financas implements Serializable{
 		
 	}
 	
-	public Financas(Integer id, String descricao, Conta conta, Date dataFinanca, Date dataSave) {
+	public Financas(Integer id, String descricao, Conta conta, Date dataFinanca) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.conta = conta;
 		this.dataFinanca = dataFinanca;
-		this.dataSave = dataSave;
 	}
 
 	public Integer getId() {
