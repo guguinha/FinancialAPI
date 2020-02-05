@@ -28,7 +28,6 @@ public class TipoFinanca implements Serializable{
 	
 	@Id
 	private Integer id;
-	//private String tipo; //Receita ou Despesa
 	private Integer tipo;
 	private Integer tipoDespesa;
 	
