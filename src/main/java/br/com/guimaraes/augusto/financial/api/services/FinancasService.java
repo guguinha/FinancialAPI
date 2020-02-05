@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.guimaraes.augusto.financial.api.domain.Conta;
 import br.com.guimaraes.augusto.financial.api.domain.Financas;
 import br.com.guimaraes.augusto.financial.api.repositories.ContaRepository;
 import br.com.guimaraes.augusto.financial.api.repositories.FinancasRepository;
@@ -32,7 +33,15 @@ public class FinancasService {
 	public Financas insert(Financas obj) {
 		obj.setId(null);
 		obj = repository.save(obj);
-		cRepo.save(obj.getConta());
+		Conta conta = cRepo.findByBancoCarteiraLike(obj.getConta().getBancoCarteira());
+		if(conta != null) {
+			conta.setSaldo(
+					conta.getSaldo()
+					+
+					obj.getConta().getSaldo()
+			);
+			cRepo.save(obj.getConta());
+		}
 		return obj;
 	}
 }

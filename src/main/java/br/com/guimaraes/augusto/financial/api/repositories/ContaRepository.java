@@ -8,4 +8,5 @@ import br.com.guimaraes.augusto.financial.api.domain.Conta;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Integer> {
 
+	public Conta findByBancoCarteiraLike(String bancoCarteira);
 }

@@ -2,6 +2,7 @@ package br.com.guimaraes.augusto.financial.api.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Conta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double saldo;
-	private String banco_carteira; //contas ou carteira 
+	private String bancoCarteira; //contas ou carteira 
 	
 	public Conta() {
 		
@@ -32,7 +33,7 @@ public class Conta implements Serializable{
 		super();
 		this.id = id;
 		this.saldo = saldo;
-		this.banco_carteira = banco_carteira;
+		this.bancoCarteira = banco_carteira;
 	}
 
 	public Integer getId() {
@@ -51,12 +52,13 @@ public class Conta implements Serializable{
 		this.saldo = saldo;
 	}
 
-	public String getBanco_carteira() {
-		return banco_carteira;
+	@Column(name = "Banco_Carteira")
+	public String getBancoCarteira() {
+		return bancoCarteira;
 	}
 
-	public void setBanco_carteira(String banco_carteira) {
-		this.banco_carteira = banco_carteira;
+	public void setBancoCarteira(String bancoCarteira) {
+		this.bancoCarteira = bancoCarteira;
 	}
 
 	@Override
@@ -79,8 +81,10 @@ public class Conta implements Serializable{
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
-			return false;
+		} else {
+			if (!id.equals(other.id))
+				return false;
+		}
 		return true;
 	}
 	
